@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "/django-gym/static/css/main.f47072e1.css",
-    "main.js": "/django-gym/static/js/main.0bcb1f10.js",
+    "main.js": "/django-gym/static/js/main.bb0f578a.js",
     "static/js/787.cda612ba.chunk.js": "/django-gym/static/js/787.cda612ba.chunk.js",
     "static/media/profile.png": "/django-gym/static/media/profile.c6a3a82e51e6353cc3fa.png",
     "index.html": "/django-gym/index.html",
     "main.f47072e1.css.map": "/django-gym/static/css/main.f47072e1.css.map",
-    "main.0bcb1f10.js.map": "/django-gym/static/js/main.0bcb1f10.js.map",
+    "main.bb0f578a.js.map": "/django-gym/static/js/main.bb0f578a.js.map",
     "787.cda612ba.chunk.js.map": "/django-gym/static/js/787.cda612ba.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.f47072e1.css",
-    "static/js/main.0bcb1f10.js"
+    "static/js/main.bb0f578a.js"
   ]
 }
