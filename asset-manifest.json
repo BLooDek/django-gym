@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/django-gym/static/css/main.d86595e0.css",
-    "main.js": "/django-gym/static/js/main.e9a5c5e0.js",
+    "main.css": "/django-gym/static/css/main.95ba19a0.css",
+    "main.js": "/django-gym/static/js/main.371b01ae.js",
     "static/js/787.cda612ba.chunk.js": "/django-gym/static/js/787.cda612ba.chunk.js",
     "static/media/profile.png": "/django-gym/static/media/profile.c6a3a82e51e6353cc3fa.png",
     "index.html": "/django-gym/index.html",
-    "main.d86595e0.css.map": "/django-gym/static/css/main.d86595e0.css.map",
-    "main.e9a5c5e0.js.map": "/django-gym/static/js/main.e9a5c5e0.js.map",
+    "main.95ba19a0.css.map": "/django-gym/static/css/main.95ba19a0.css.map",
+    "main.371b01ae.js.map": "/django-gym/static/js/main.371b01ae.js.map",
     "787.cda612ba.chunk.js.map": "/django-gym/static/js/787.cda612ba.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.d86595e0.css",
-    "static/js/main.e9a5c5e0.js"
+    "static/css/main.95ba19a0.css",
+    "static/js/main.371b01ae.js"
   ]
 }
