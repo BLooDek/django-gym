@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/django-gym/static/css/main.95ba19a0.css",
-    "main.js": "/django-gym/static/js/main.371b01ae.js",
+    "main.css": "/django-gym/static/css/main.b5ee42cc.css",
+    "main.js": "/django-gym/static/js/main.5c20e954.js",
     "static/js/787.cda612ba.chunk.js": "/django-gym/static/js/787.cda612ba.chunk.js",
     "static/media/profile.png": "/django-gym/static/media/profile.c6a3a82e51e6353cc3fa.png",
     "index.html": "/django-gym/index.html",
-    "main.95ba19a0.css.map": "/django-gym/static/css/main.95ba19a0.css.map",
-    "main.371b01ae.js.map": "/django-gym/static/js/main.371b01ae.js.map",
+    "main.b5ee42cc.css.map": "/django-gym/static/css/main.b5ee42cc.css.map",
+    "main.5c20e954.js.map": "/django-gym/static/js/main.5c20e954.js.map",
     "787.cda612ba.chunk.js.map": "/django-gym/static/js/787.cda612ba.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.95ba19a0.css",
-    "static/js/main.371b01ae.js"
+    "static/css/main.b5ee42cc.css",
+    "static/js/main.5c20e954.js"
   ]
 }
