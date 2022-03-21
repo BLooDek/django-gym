@@ -1,29 +1,21 @@
 import { useEffect, useState } from "react";
+import { fetchData } from "./api";
+
 export default function PriceList({ setCurrentPage }) {
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [items, setItems] = useState([]);
   const [switchState, setSwitchState] = useState(true);
+  const url = "https://loscalhost/pass/show/";
 
   useEffect(() => {
     setCurrentPage("Price List");
   });
-  useEffect(() => {
-    fetch("http://localhost/pass/show/")
-      .then((res) => res.json())
-      .then(
-        (result) => {
 
-          setItems(result);
-          setCurrentPage("Price List")
-          setIsLoaded(true);
-        },
-        (error) => {
-          setIsLoaded(true);
-          setError(error);
-        }
-      );
+  useEffect(() => {
+    fetchData(url, setItems, setIsLoaded, setError);
   }, []);
+  
   if (error) {
     return <div>Error: {error.message}</div>;
   } else if (!isLoaded) {
