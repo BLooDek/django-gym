@@ -6,7 +6,7 @@ export default function PriceList({ setCurrentPage }) {
   const [isLoaded, setIsLoaded] = useState(false);
   const [items, setItems] = useState([]);
   const [switchState, setSwitchState] = useState(true);
-  const url = "https://loscalhost/pass/show/";
+  const url = "http://127.0.0.1:8000/pass/show/";
 
   useEffect(() => {
     setCurrentPage("Price List");

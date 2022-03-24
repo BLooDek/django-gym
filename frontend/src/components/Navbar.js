@@ -1,15 +1,19 @@
-import { Disclosure,} from "@headlessui/react";
+import { Disclosure } from "@headlessui/react";
 import { BellIcon, MenuIcon, XIcon } from "@heroicons/react/outline";
 import { Link } from "react-router-dom";
 import UserMenu from "./UserMenu";
-import MyDialog from "./MyDialog";
+import { useSelector, useDispatch } from "react-redux";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
 export default function Navbar({ currentPage, setCurrentPage }) {
-  
+  const isLoggedIn = useSelector((state) => state.isLogged.value);
+  const email = useSelector(
+    (state) => state.isLogged.credentials?.["email"]
+  );
+
   const navigation = [
     { name: "Blog", href: "/django-gym", current: currentPage === "Blog" },
     {
@@ -30,7 +34,7 @@ export default function Navbar({ currentPage, setCurrentPage }) {
   ];
 
   return (
-    <Disclosure as="nav" className="bg-gray-800">
+    <Disclosure as="nav" className="bg-rich-black">
       {({ open }) => (
         <>
           <div className="mx-auto px-2 sm:px-6 lg:px-8 ">
@@ -47,28 +51,24 @@ export default function Navbar({ currentPage, setCurrentPage }) {
                 </Disclosure.Button>
               </div>
               <div className="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
-                <Link to="/" onClick={() => setCurrentPage("Blog")}>
+                <Link to="/django-gym" onClick={() => setCurrentPage("Blog")}>
                   <div className="flex-shrink-0 flex items-center">
                     <p className="font-bold text-white hover:text-purple-main">
                       DjangoGym
                     </p>
                   </div>
                 </Link>
-                
+
                 <div className="hidden sm:block sm:ml-6">
                   <div className="flex space-x-4">
                     {navigation.map((item) => (
                       <Link
                         to={item.href}
                         key={item.name}
-                        // onClick={() => {
-                        //   setCurrentPage(item.name);
-                        //   console.log(currentPage);
-                        // }}
                         className={classNames(
                           currentPage === item.name
                             ? "bg-gray-900 text-purple-main"
-                            : "text-gray-300 hover:bg-gray-700 hover:text-purple-main",
+                            : "text-gray-300 hover:bg-pewter-blue hover:text-purple-main",
                           "px-3 py-2 rounded-md text-sm font-medium"
                         )}
                         aria-current={
@@ -82,6 +82,7 @@ export default function Navbar({ currentPage, setCurrentPage }) {
                 </div>
               </div>
               <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+              {isLoggedIn ? <span className="text-white text-lg">Hello {email}</span> : null}
                 <button
                   type="button"
                   className="bg-gray-800 p-1 rounded-full text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
@@ -89,12 +90,12 @@ export default function Navbar({ currentPage, setCurrentPage }) {
                   <span className="sr-only">View notifications</span>
                   <BellIcon className="h-6 w-6" aria-hidden="true" />
                 </button>
-
-                   <UserMenu/>
-                
+                  
+                <UserMenu />
               </div>
             </div>
           </div>
+          
 
           <Disclosure.Panel className="sm:hidden">
             <div className="px-2 pt-2 pb-3 space-y-1">

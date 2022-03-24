@@ -10,7 +10,7 @@ export default function Calendar({ setCurrentPage }) {
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [items, setItems] = useState([]);
-  const url = "https://loscalhost/calendar/all/";
+  const url = "http://127.0.0.1:8000/calendar/all/";
 
   useEffect(() => {
     fetchData(url, setItems, setIsLoaded, setError);

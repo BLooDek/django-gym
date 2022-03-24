@@ -1,5 +1,7 @@
 import { Menu, Transition } from "@headlessui/react";
-
+import { useSelector, useDispatch } from 'react-redux'
+import { setValue } from "../features/auth/loginSlice"; 
+import { switchState as switchForm } from "../features/auth/loginForm";
 import { Fragment, useState } from "react";
 
 function classNames(...classes) {
@@ -7,8 +9,9 @@ function classNames(...classes) {
 }
 
 export default function UserMenu() {
-    //todo: make it global state 
-  const [isLoggedIn, setLoggedIn] = useState(false);
+  const  isLoggedIn = useSelector((state)=> state.isLogged.value);
+  
+  const dispatch = useDispatch()
   return (
     <>
       {/* Profile dropdown */}
@@ -64,14 +67,13 @@ export default function UserMenu() {
                 <Menu.Item>
                   {({ active }) => (
                     <a
-                      onClick={() => setLoggedIn(!isLoggedIn)}
                       href="#"
                       className={classNames(
                         active ? "bg-gray-100" : "",
                         "block px-4 py-2 text-sm text-gray-700"
                       )}
                     >
-                      Logout
+                      Sign out
                     </a>
                   )}
                 </Menu.Item>
@@ -81,7 +83,7 @@ export default function UserMenu() {
                 <Menu.Item>
                   {({ active }) => (
                     <a
-                      onClick={() => setLoggedIn(!isLoggedIn)}
+                      onClick={() => dispatch(switchForm())}
                       href="#"
                       className={classNames(
                         active ? "bg-gray-100" : "",

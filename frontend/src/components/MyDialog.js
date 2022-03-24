@@ -1,25 +1,22 @@
-
+import { useSelector, useDispatch } from 'react-redux'
+// import { switchState} from '../features/auth/loginForm';
+import { setValue } from '../features/auth/loginSlice';
 import { Dialog, Transition } from '@headlessui/react'
 import { Fragment, useState } from 'react'
 
 export default function MyDialog() {
   
-  let [isOpen, setIsOpen] = useState(true)
-
-  function closeModal() {
-    setIsOpen(false)
-  }
-
-  function openModal() {
-    setIsOpen(true)
-  }
+  // let [isOpen, setIsOpen] = useState(true)
+  const isOpen = useSelector((state)=> state.isLogged.value);
+  const dispatch = useDispatch()
+  
 
   return (
     <Transition appear show={isOpen} as={Fragment}>
         <Dialog
           as="div"
           className="fixed inset-0 z-10 overflow-y-auto"
-          onClose={closeModal}
+          // onClose={() => dispatch(setValue())}
         >
           <div className="min-h-screen px-4 text-center">
             <Transition.Child
@@ -55,12 +52,11 @@ export default function MyDialog() {
                   as="h3"
                   className="text-lg font-medium leading-6 text-gray-900"
                 >
-                  Payment successful
+                  Login
                 </Dialog.Title>
                 <div className="mt-2">
                   <p className="text-sm text-gray-500">
-                    Your payment has been successfully submitted. We’ve sent you
-                    an email with all of the details of your order.
+                    dialog
                   </p>
                 </div>
 
@@ -68,9 +64,9 @@ export default function MyDialog() {
                   <button
                     type="button"
                     className="inline-flex justify-center px-4 py-2 text-sm font-medium text-blue-900 bg-blue-100 border border-transparent rounded-md hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"
-                    onClick={closeModal}
+                    // onClick={() => dispatch(setValue())}
                   >
-                    Got it, thanks!
+                    JAZDA
                   </button>
                 </div>
               </div>

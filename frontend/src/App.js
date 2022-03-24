@@ -1,26 +1,25 @@
 import React, { useState } from "react";
-import { Routes, Route, BrowserRouter as Router, Link } from "react-router-dom";
-import Footer4 from "./components/Footer";
+import { Routes, Route, BrowserRouter as Router} from "react-router-dom";
+import Footer from "./components/Footer";
 import { Calendar, Blog, Contact, PriceList } from "./components/index";
 import MyDialog from "./components/MyDialog";
-
 import Navbar from "./components/Navbar";
+import LoginDialog from "./features/auth/LoginDialog";
 
 function App() {
   const [currentPage, setCurrentPage] = useState("Blog");
   return (
-    <>
-      
-      
-      <Router>
-      {/* <MyDialog /> */}
-
+    <div className="bg-purple-600">
+      <Router >
+        {/* <MyDialog /> */}
+      <LoginDialog/>
         <Navbar currentPage={currentPage} setCurrentPage={setCurrentPage} />
 
         <div className="min-h-[66vh] ">
-          <Routes>
+          <Routes >
             //
             <Route
+            
               path="/django-gym"
               element={<Blog setCurrentPage={setCurrentPage} />}
             />
@@ -38,9 +37,9 @@ function App() {
             />
           </Routes>
         </div>
-        <Footer4 />
+        <Footer />
       </Router>
-    </>
+    </div>
   );
 }
 

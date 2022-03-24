@@ -1,9 +1,10 @@
 import { Link } from "react-router-dom";
 export default function Footer() {
   return (
-    <div className="mx-auto container xl:px-20 lg:px-12 sm:px-6 px-4 py-12 bg-gray-800 max-w-none" >
+    <div className="mx-auto container xl:px-20 lg:px-12 sm:px-6 px-4 py-12 bg-rich-black max-w-none" >
     <div className="flex flex-col items-center justify-center">
-    <Link to='/'><div className="flex row-auto">
+    <Link to='/django-gym'><div className="flex row-auto">
+
         <p className="font-bold text-agile-white hover:text-purple-main">DjangoGym</p>
       </div></Link>
       <div className="flex flex-wrap sm:gap-10 gap-8 items-center justify-center mt-8">
