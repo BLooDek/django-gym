@@ -4,7 +4,7 @@ from decouple import config
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = 'django-insecure-84cy6tr^@x!3r8ngz(ma$8$vzk)_sylf)p#969hhp3^32!0o0s'
+SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -23,6 +23,7 @@ INSTALLED_APPS = [
 
     # local
     'users',
+    'events',
 
     # 3rd party
     'rest_framework',
@@ -152,7 +153,7 @@ ACCOUNT_EMAIL_VERIFICATION = "optional"
 
 PASSWORDLESS_AUTH = {
     'PASSWORDLESS_AUTH_TYPES': ['EMAIL', ],
-    'PASSWORDLESS_EMAIL_NOREPLY_ADDRESS': '',
+    'PASSWORDLESS_EMAIL_NOREPLY_ADDRESS': DEFAULT_FROM_EMAIL,
     'PASSWORDLESS_REGISTER_NEW_USERS': False,
     'PASSWORDLESS_AUTH_PREFIX': 'dj-rest-auth/',
     'PASSWORDLESS_EMAIL_SUBJECT_TOKEN': True,
