@@ -5,11 +5,10 @@ export function fetchData(url, setItems, setIsLoaded, setError) {
     .then(
       (result) => {
         setItems(result);
-        setIsLoaded(true);       
       },
       (error) => {
-        setIsLoaded(true);
         setError(error);
       }
     );
+  setIsLoaded(true);
 }

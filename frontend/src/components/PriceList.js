@@ -4,16 +4,21 @@ import { fetchData } from "./api";
 export default function PriceList({ setCurrentPage }) {
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
-  const [items, setItems] = useState([]);
+  const [items, setItems] = useState(null);
   const [switchState, setSwitchState] = useState(true);
-  const url = "http://127.0.0.1:8000/pass/show/";
+  const url = "";
 
   useEffect(() => {
     setCurrentPage("Price List");
   });
 
   useEffect(() => {
-    fetchData(url, setItems, setIsLoaded, setError);
+    fetchData(
+      url,
+      setItems,
+      setIsLoaded,
+      setError
+    );
   }, []);
   
   if (error) {
@@ -22,9 +27,9 @@ export default function PriceList({ setCurrentPage }) {
     return <div>Loading...</div>;
   } else {
     return (
-      
-      <div>
-        {console.log(items)}
+<>
+{items &&   <div>
+         
         <section className="px-6 xl:px-0">
           <div className="mt-10 mx-auto ">
             <div className="flex flex-col lg:items-center justify-center w-full">
@@ -195,7 +200,9 @@ export default function PriceList({ setCurrentPage }) {
           }
           `}
         </style>
-      </div>
+      </div>}
+      </>
+
     );
   }
 }

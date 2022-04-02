@@ -1,17 +1,23 @@
 import { Menu, Transition } from "@headlessui/react";
-import { useSelector, useDispatch } from 'react-redux'
-import { setValue } from "../features/auth/loginSlice"; 
-import { switchState as switchForm } from "../features/auth/loginForm";
-import { Fragment, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { setLoginDialog } from "../features/auth/authDialogState";
+import { Fragment } from "react";
+import { logoutUser } from "../features/auth/authApi";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
 export default function UserMenu() {
-  const  isLoggedIn = useSelector((state)=> state.isLogged.value);
-  
-  const dispatch = useDispatch()
+  const isLoggedIn = useSelector((state) => state.isLogged.value);
+  const dispatch = useDispatch();
+
+  const openLoginDialog = () => {
+    dispatch(setLoginDialog(true));
+  };
+  const signOut = () => {
+    logoutUser(dispatch);
+  };
   return (
     <>
       {/* Profile dropdown */}
@@ -67,7 +73,7 @@ export default function UserMenu() {
                 <Menu.Item>
                   {({ active }) => (
                     <a
-                      href="#"
+                    onClick={signOut}
                       className={classNames(
                         active ? "bg-gray-100" : "",
                         "block px-4 py-2 text-sm text-gray-700"
@@ -83,8 +89,7 @@ export default function UserMenu() {
                 <Menu.Item>
                   {({ active }) => (
                     <a
-                      onClick={() => dispatch(switchForm())}
-                      href="#"
+                      onClick={openLoginDialog}
                       className={classNames(
                         active ? "bg-gray-100" : "",
                         "block px-4 py-2 text-sm text-gray-700"
@@ -93,14 +98,12 @@ export default function UserMenu() {
                       Sign in
                     </a>
                   )}
-                  
                 </Menu.Item>
               </>
             )}
           </Menu.Items>
         </Transition>
       </Menu>
-      
     </>
   );
 }

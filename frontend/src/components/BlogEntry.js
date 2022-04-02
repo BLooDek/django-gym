@@ -11,4 +11,3 @@ export default function BlogEntry({item}) {
 		</>
 	);
 }
-      //"title": "Nowy post", "id": 7, "author": "admin", "body": "elo", "publish": "2022-03-15 21:51:50"}
