@@ -56,10 +56,7 @@ export default function PasswordLoginForm({ setError, dispatch }) {
           >
             Password
           </label>
-          <a
-            href="#"
-            className="text-xs text-gray-600 dark:text-gray-400 hover:underline"
-          >
+          <a className="text-xs text-gray-600 dark:text-gray-400 hover:underline">
             Forgot Password?
           </a>
         </div>

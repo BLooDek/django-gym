@@ -3,6 +3,7 @@ import { Fragment, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { setLoginDialog, setRegisterDialog } from "./authDialogState";
 import PasswordLoginForm from "./PasswordLoginForm";
+import PasswordlessLoginForm from './PasswordlessLoginForm'
 
 export default function LoginDialog() {
   const isOpen = useSelector((state) => state.authDialog.loginDialog);
@@ -62,15 +63,14 @@ export default function LoginDialog() {
               {loginFormType && (
                 <PasswordLoginForm setError={setError} dispatch={dispatch} />
               )}
-              {/* {!loginFormType && (
-                <LoginPassless setError={setError} dispatch={dispatch} />
-              )} */}
+              {!loginFormType && (
+                <PasswordlessLoginForm setError={setError} dispatch={dispatch} />
+              )}
 
               <div className="flex items-center justify-between mt-4">
                 <span className="w-1/5 border-b  lg:w-1/5"></span>
 
                 <a
-                  href="#"
                   className="text-xs text-center text-gray-500 uppercase hover:underline"
                 >
                   OR

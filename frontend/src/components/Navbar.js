@@ -2,7 +2,7 @@ import { Disclosure } from "@headlessui/react";
 import { BellIcon, MenuIcon, XIcon } from "@heroicons/react/outline";
 import { Link } from "react-router-dom";
 import UserMenu from "./UserMenu";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector} from "react-redux";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
