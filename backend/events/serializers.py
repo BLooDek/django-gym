@@ -1,7 +1,7 @@
 from django.contrib.auth import get_user_model
 from rest_framework import serializers
 from rest_framework.fields import CurrentUserDefault
-from .models import Event
+from .models import Event, Trainer
 
 
 class EventSerializer(serializers.ModelSerializer):
@@ -19,5 +19,12 @@ class EventSerializer(serializers.ModelSerializer):
 
     def get_color(self, obj):
         if self.context.get('user') in obj.members.all():
-            return 'green'
-        return '#fe6000'
+            return 'blue'
+        return '#6415ff'
+
+
+class TrainerSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Trainer
+        fields = '__all__'
+        depth = 1
