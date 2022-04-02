@@ -1,17 +1,19 @@
 import { Menu, Transition } from "@headlessui/react";
-import { useSelector, useDispatch } from 'react-redux'
-import { setValue } from "../features/auth/loginSlice"; 
-import { switchState as switchForm } from "../features/auth/loginForm";
-import { Fragment, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { setLoginDialog } from "../features/auth/authDialogState";
+import { Fragment } from "react";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
 export default function UserMenu() {
-  const  isLoggedIn = useSelector((state)=> state.isLogged.value);
-  
-  const dispatch = useDispatch()
+  const isLoggedIn = useSelector((state) => state.isLogged.value);
+  const dispatch = useDispatch();
+
+  const openLoginDialog = () => {
+    dispatch(setLoginDialog(true));
+  };
   return (
     <>
       {/* Profile dropdown */}
@@ -83,7 +85,7 @@ export default function UserMenu() {
                 <Menu.Item>
                   {({ active }) => (
                     <a
-                      onClick={() => dispatch(switchForm())}
+                      onClick={openLoginDialog}
                       href="#"
                       className={classNames(
                         active ? "bg-gray-100" : "",
@@ -93,14 +95,12 @@ export default function UserMenu() {
                       Sign in
                     </a>
                   )}
-                  
                 </Menu.Item>
               </>
             )}
           </Menu.Items>
         </Transition>
       </Menu>
-      
     </>
   );
 }

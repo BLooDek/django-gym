@@ -1,10 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit'
-import loginReducer from '../features/auth/loginSlice'
-import loginFormReducer from '../features/auth/loginForm'
+import authReducer from '../features/auth/authState'
+import authDialogReducer from '../features/auth/authDialogState'
 
 export default configureStore({
   reducer: {
-    isLogged: loginReducer,
-    showLoginForm: loginFormReducer,
+    isLogged: authReducer,
+    authDialog: authDialogReducer,
   },
 })

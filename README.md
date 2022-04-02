@@ -1,9 +1,31 @@
 # djang-gym
 React + Django app
 
-To start Django
-`Python 3.10 and pipenv required`
-In backend folder
-pipenv install -r requirements.txt
-pipenv shell
-python manage.py runserver
+## Features
+  
+### Auth
+#### Registration
+#### Login with email + password
+#### Passwordless login
+#### Persistent login session
+#### Logout
+
+## Calendar
+
+
+
+## How to run things locally
+To start Django  
+`Python 3.10 and pipenv required`  
+In backend/config folder create .env file with:  
+
+`EMAIL_HOST = ""`  
+`EMAIL_HOST_USER = ""`  
+`DEFAULT_FROM_EMAIL = ""`  
+`EMAIL_HOST_PASSWORD = ""`  
+`EMAIL_PORT =  `  
+`SECRET_KEY = "" `  
+
+pipenv install -r requirements.txt  
+pipenv shell  
+python manage.py runserver  

@@ -1,5 +1,5 @@
-import { setLogged, setCredentials } from "./loginSlice";
-import { switchState } from "./loginForm";
+import { setLogged, setCredentials } from "./authState";
+import { setLoginDialog } from "./authDialogState";
 
 
 //fetch creditensials, signal error
@@ -18,7 +18,7 @@ export function fetchCredentials(key, setErrors, dispatch) {
         console.log(result);
         dispatch(setCredentials(result))
         dispatch(setLogged(true));
-        dispatch(switchState())
+        dispatch(setLoginDialog(false))
       },
       (error) => {
         setErrors(error);
