@@ -6,6 +6,7 @@ const url = {
   register: authUrl + "registration/",
   user: authUrl + "user/",
   signout: authUrl + "logout/",
+  login: authUrl + "login/",
 };
 
 export function fetchCredentials(key, setError, dispatch) {
@@ -76,3 +77,29 @@ export function logoutUser(dispatch) {
       localStorage.clear();
     });
 }
+
+export function loginWithPassword(data, setError, dispatch) {
+  fetch(url.login, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  })
+    .then((res) => res.json())
+    .then(
+      (data) => {
+        if (data.key) {
+          localStorage.setItem("token", data.key);
+          setError(null);
+          fetchCredentials(data.key, setError, dispatch);
+        } else {
+          setError(data["non_field_errors"][0]);
+        }
+      },
+      (error) => {
+        console.log(error);
+        setError(error);
+      }
+    );
+};

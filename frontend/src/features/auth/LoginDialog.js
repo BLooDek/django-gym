@@ -2,12 +2,13 @@ import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { setLoginDialog, setRegisterDialog } from "./authDialogState";
+import PasswordLoginForm from "./PasswordLoginForm";
 
 export default function LoginDialog() {
   const isOpen = useSelector((state) => state.authDialog.loginDialog);
   const dispatch = useDispatch();
   const [error, setError] = useState(null);
-  const [loginWithPassword, setLoginWithPassword] = useState(true);
+  const [loginFormType, setLoginWithPassword] = useState(true);
 
   return (
     <Transition appear show={isOpen} as={Fragment}>
@@ -50,7 +51,7 @@ export default function LoginDialog() {
                 as="h3"
                 className="text-lg font-medium leading-6 text-gray-900"
               >
-                Sing in
+                Sign in
               </Dialog.Title>
               {error && (
                 <h2 className="text-red-700">
@@ -58,10 +59,10 @@ export default function LoginDialog() {
                   {error}
                 </h2>
               )}
-              {/* {loginWithPassword && (
-                <LoginPassword setError={setError} dispatch={dispatch} />
+              {loginFormType && (
+                <PasswordLoginForm setError={setError} dispatch={dispatch} />
               )}
-              {!loginWithPassword && (
+              {/* {!loginFormType && (
                 <LoginPassless setError={setError} dispatch={dispatch} />
               )} */}
 
@@ -78,7 +79,7 @@ export default function LoginDialog() {
                 <span className="w-1/5 border-b  lg:w-1/5"></span>
               </div>
 
-              {loginWithPassword && (
+              {loginFormType && (
                 <div className="flex items-center mt-6 -mx-2">
                   <button
                     onClick={() => setLoginWithPassword(false)}
@@ -91,7 +92,7 @@ export default function LoginDialog() {
                   </button>
                 </div>
               )}
-              {!loginWithPassword && (
+              {!loginFormType && (
                 <div className="flex items-center mt-6 -mx-2">
                   <button
                     onClick={() => setLoginWithPassword(true)}
