@@ -2,6 +2,7 @@ import { Menu, Transition } from "@headlessui/react";
 import { useSelector, useDispatch } from "react-redux";
 import { setLoginDialog } from "../features/auth/authDialogState";
 import { Fragment } from "react";
+import { logoutUser } from "../features/auth/authApi";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -13,6 +14,9 @@ export default function UserMenu() {
 
   const openLoginDialog = () => {
     dispatch(setLoginDialog(true));
+  };
+  const signOut = () => {
+    logoutUser(dispatch);
   };
   return (
     <>
@@ -69,7 +73,7 @@ export default function UserMenu() {
                 <Menu.Item>
                   {({ active }) => (
                     <a
-                      href="#"
+                    onClick={signOut}
                       className={classNames(
                         active ? "bg-gray-100" : "",
                         "block px-4 py-2 text-sm text-gray-700"
@@ -86,7 +90,6 @@ export default function UserMenu() {
                   {({ active }) => (
                     <a
                       onClick={openLoginDialog}
-                      href="#"
                       className={classNames(
                         active ? "bg-gray-100" : "",
                         "block px-4 py-2 text-sm text-gray-700"

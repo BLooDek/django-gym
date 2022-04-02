@@ -45,7 +45,7 @@ export default function LoginDialog() {
             leaveFrom="opacity-100 scale-100"
             leaveTo="opacity-0 scale-95"
           >
-            <div className="shadow-md dark:bg-gray-800 inline-block w-full max-w-md p-6 my-8 overflow-hidden text-left align-middle transition-all transform bg-white border-2 border-black shadow-xl rounded-2xl">
+            <div className="shadow-md  inline-block w-full max-w-md p-6 my-8 overflow-hidden text-left align-middle transition-all transform bg-white border-2 border-black shadow-xl rounded-2xl">
               <Dialog.Title
                 as="h3"
                 className="text-lg font-medium leading-6 text-gray-900"
@@ -66,16 +66,16 @@ export default function LoginDialog() {
               )} */}
 
               <div className="flex items-center justify-between mt-4">
-                <span className="w-1/5 border-b dark:border-gray-600 lg:w-1/5"></span>
+                <span className="w-1/5 border-b  lg:w-1/5"></span>
 
                 <a
                   href="#"
-                  className="text-xs text-center text-gray-500 uppercase dark:text-gray-400 hover:underline"
+                  className="text-xs text-center text-gray-500 uppercase hover:underline"
                 >
                   OR
                 </a>
 
-                <span className="w-1/5 border-b dark:border-gray-400 lg:w-1/5"></span>
+                <span className="w-1/5 border-b  lg:w-1/5"></span>
               </div>
 
               {loginWithPassword && (
@@ -113,7 +113,7 @@ export default function LoginDialog() {
                     dispatch(setLoginDialog(false));
                     dispatch(setRegisterDialog(true));
                   }}
-                  className="font-medium text-gray-700 dark:text-gray-200 hover:underline"
+                  className="font-medium text-gray-700 hover:underline"
                 >
                   Create One
                 </a>
