@@ -31,12 +31,12 @@ export default function PasswordLoginForm({ setError, dispatch }) {
       <div>
         <label
           htmlFor="email"
-          className="block text-sm text-gray-800 dark:text-gray-200"
+          className="block text-sm text-gray-800 "
         >
           Email
         </label>
         <input
-          className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border rounded-md focus:bg-gray-100 focus:ring-purple-second focus:outline-none focus:ring focus:ring-opacity-40"
+          className="input-primary"
           placeholder="email@address.com"
           type="text"
           {...register("email")}
@@ -52,11 +52,11 @@ export default function PasswordLoginForm({ setError, dispatch }) {
         <div className="flex items-center justify-between">
           <label
             htmlFor="password"
-            className="block text-sm text-gray-800 dark:text-gray-200"
+            className="block text-sm text-gray-800 "
           >
             Password
           </label>
-          <a className="text-xs text-gray-600 dark:text-gray-400 hover:underline">
+          <a className="text-xs text-gray-600 ">
             Forgot Password?
           </a>
         </div>
@@ -64,7 +64,7 @@ export default function PasswordLoginForm({ setError, dispatch }) {
           name="password"
           type="password"
           {...register("password")}
-          className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border rounded-md focus:bg-gray-100  focus:ring-purple-second focus:outline-none focus:ring focus:ring-opacity-40"
+          className="input-primary"
         />
       </div>
       {errors.password && (
@@ -77,7 +77,7 @@ export default function PasswordLoginForm({ setError, dispatch }) {
       <div className="mt-6">
         <button
           disabled={!isDirty || !isValid}
-          className="w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-purple-main rounded-md hover:bg-purple-second focus:bg-purple-second disabled:bg-gray-600"
+          className="btn-primary"
         >
           Login
         </button>

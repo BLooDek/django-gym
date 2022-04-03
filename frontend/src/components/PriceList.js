@@ -110,7 +110,7 @@ export default function PriceList({ setCurrentPage }) {
                             /{switchState ? "Year" : "Month"}
                           </span>
                         </p>
-                        <button className="mt-5 w-full bg-gray-200 hover:bg-gray-300 focus:outline-none transition duration-150 ease-in-out rounded text-purple-mabg-purple-main px-8 py-3 text-base font-semibold py-3">
+                        <button className="mt-5 w-full bg-gray-200 hover:bg-gray-300 focus:outline-none transition duration-150 ease-in-out rounded text-purple-mabg-purple-main px-8 text-base font-semibold py-3">
                           Choose
                         </button>
                       </div>
@@ -145,7 +145,7 @@ export default function PriceList({ setCurrentPage }) {
                             /{switchState ? "Year" : "Month"}
                           </span>
                         </p>
-                        <button className="mt-5 w-full text-purple-mabg-purple-main focus:outline-none transition duration-150 ease-in-out rounded bg-white hover:bg-gray-100 px-8 py-3 text-base font-semibold py-3">
+                        <button className="mt-5 w-full text-purple-mabg-purple-main focus:outline-none transition duration-150 ease-in-out rounded bg-white hover:bg-gray-100 px-8 text-base font-semibold py-3">
                           Try
                         </button>
                       </div>
@@ -181,7 +181,7 @@ export default function PriceList({ setCurrentPage }) {
                             /{switchState ? "Year" : "Month"}
                           </span>
                         </p>
-                        <button className="mt-5 w-full bg-gray-200 hover:bg-gray-300 focus:outline-none transition duration-150 ease-in-out rounded text-purple-mabg-purple-main px-8 py-3 text-base font-semibold py-3">
+                        <button className="mt-5 w-full bg-gray-200 hover:bg-gray-300 focus:outline-none transition duration-150 ease-in-out rounded text-purple-mabg-purple-main px-8 text-base font-semibold py-3">
                           Choose
                         </button>
                       </div>

@@ -74,9 +74,9 @@ export function logoutUser(dispatch) {
   })
     .then((res) => res.json())
     .then(() => {
+      localStorage.removeItem("token");
       dispatch(setLogged(false));
       dispatch(setCredentials(null));
-      localStorage.clear();
     });
 }
 
