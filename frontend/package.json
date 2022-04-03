@@ -1,7 +1,7 @@
 {
   "name": "frontend",
-  "version": "0.1.0",
-  "homepage": "https://bloodek.github.io/django-gym/calendar",
+  "version": "0.2.0",
+  "homepage": "https://bloodek.github.io/django-gym/",
   "private": true,
   "dependencies": {
     "@fullcalendar/daygrid": "^5.10.1",

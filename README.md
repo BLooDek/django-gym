@@ -11,13 +11,17 @@ React + Django app
 #### Logout
 
 ## Calendar
+#### Add/Edit/Delete of events
+#### Gesture handling: drag&drop + resizing events
+#### Signing in/out of events
+
 
 
 
 ## How to run things locally
 To start Django  
 `Python 3.10 and pipenv required`  
-In backend/config folder create .env file with:  
+In ./backend/config folder create .env file with:  
 
 `EMAIL_HOST = ""`  
 `EMAIL_HOST_USER = ""`  
