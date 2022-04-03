@@ -1,7 +1,7 @@
 import { setLogged, setCredentials } from "./authState";
 import { setLoginDialog, setRegisterDialog } from "./authDialogState";
 
-const authUrl = "http://127.0.0.1:8000/users/dj-rest-auth/";
+const authUrl = "https://djangogym.pythonanywhere.com/users/dj-rest-auth/";
 const url = {
   register: authUrl + "registration/",
   user: authUrl + "user/",

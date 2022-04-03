@@ -1,5 +1,5 @@
 import { setEditDialog, setAddDialog, setDetailsDialog } from "./calendarState";
-const calendarUrl = "http://127.0.0.1:8000/calendar/";
+const calendarUrl = "https://djangogym.pythonanywhere.com/calendar/";
 const url = {
   getAll: calendarUrl + "all/",
   edit: calendarUrl + "update/",
