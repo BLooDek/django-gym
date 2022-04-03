@@ -5,9 +5,10 @@ import dayGridPlugin from "@fullcalendar/daygrid"; // a plugin!
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import { fetchData, editEvent, addEvent } from "./calendarApi";
-import { setAddDialog } from "./calendarState";
-import "../../App.css";
+import { setAddDialog, setDetailsDialog } from "./calendarState";
+import DetailsEventDialog from "./DetailsEventDialog";
 import AddEventDialog from "./AddEventDialog";
+import "../../App.css";
 
 export default function Calendar({ setCurrentPage }) {
   const dispatch = useDispatch();
@@ -39,6 +40,10 @@ export default function Calendar({ setCurrentPage }) {
   function handleAdd(data) {
     addEvent(data, setItems, setIsLoaded, setError, dispatch);
   }
+  function handleClick(eventClickInfo) {
+    setCurrentEvent(eventClickInfo.event);
+    dispatch(setDetailsDialog(true));
+  }
 
   if (error) {
     return <div>Error: {error.message}</div>;
@@ -47,6 +52,7 @@ export default function Calendar({ setCurrentPage }) {
   } else {
     return (
       <div className="mx-10 my-14">
+        {currentEvent && <DetailsEventDialog setItems={setItems} eventInfo={currentEvent} />}
         {currentEvent && (
           <AddEventDialog handleAdd={handleAdd} eventInfo={currentEvent} />
         )}
@@ -67,6 +73,7 @@ export default function Calendar({ setCurrentPage }) {
           eventResize={handleGestures}
           selectable={isAdmin} // only admin can select time
           select={handleDateSelect}
+          eventClick={handleClick}
         />
       </div>
     );
