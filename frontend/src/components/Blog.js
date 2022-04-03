@@ -6,7 +6,7 @@ export default function Blog({ setCurrentPage }) {
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [items, setItems] = useState([]);
-  const url = "https://djangogym.pythonanywhere.com/blog/all";
+  const url = "http://127.0.0.1:8000/blog/all";
 
   useEffect(() => {
     fetchData(
