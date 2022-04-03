@@ -6,7 +6,6 @@ export const calendarState = createSlice({
     addDialog: false,
     editDialog: false,
     detailsDialog: false,
-    currentEvent: null,
   },
   reducers: {
     setAddDialog: (state, action) => {
@@ -18,13 +17,11 @@ export const calendarState = createSlice({
     setDetailsDialog: (state, action) => {
       state.detailsDialog = action.payload;
     },
-    setCurrentEvent: (state, action) => {
-      state.currentEvent = action.payload;
-    },
+    
   },
 });
 
-export const { setAddDialog, setEditDialog, setDetailsDialog, setCurrentEvent } =
+export const { setAddDialog, setEditDialog, setDetailsDialog } =
   calendarState.actions;
 
 export default calendarState.reducer;
