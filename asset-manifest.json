@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/django-gym/calendar/static/css/main.f93fe348.css",
-    "main.js": "/django-gym/calendar/static/js/main.925e709b.js",
-    "static/js/787.cda612ba.chunk.js": "/django-gym/calendar/static/js/787.cda612ba.chunk.js",
-    "static/media/profile.png": "/django-gym/calendar/static/media/profile.c6a3a82e51e6353cc3fa.png",
-    "index.html": "/django-gym/calendar/index.html",
-    "main.f93fe348.css.map": "/django-gym/calendar/static/css/main.f93fe348.css.map",
-    "main.925e709b.js.map": "/django-gym/calendar/static/js/main.925e709b.js.map",
-    "787.cda612ba.chunk.js.map": "/django-gym/calendar/static/js/787.cda612ba.chunk.js.map"
+    "main.css": "/django-gym/static/css/main.f93fe348.css",
+    "main.js": "/django-gym/static/js/main.f07ca769.js",
+    "static/js/787.cda612ba.chunk.js": "/django-gym/static/js/787.cda612ba.chunk.js",
+    "static/media/profile.png": "/django-gym/static/media/profile.c6a3a82e51e6353cc3fa.png",
+    "index.html": "/django-gym/index.html",
+    "main.f93fe348.css.map": "/django-gym/static/css/main.f93fe348.css.map",
+    "main.f07ca769.js.map": "/django-gym/static/js/main.f07ca769.js.map",
+    "787.cda612ba.chunk.js.map": "/django-gym/static/js/787.cda612ba.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.f93fe348.css",
-    "static/js/main.925e709b.js"
+    "static/js/main.f07ca769.js"
   ]
 }
