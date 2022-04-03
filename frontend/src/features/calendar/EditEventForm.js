@@ -3,35 +3,36 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import DateTimePicker from "react-datetime-picker";
 import { useEffect, useState } from "react";
-import { fetchTrainers, } from "./calendarApi";
+import {fetchTrainers } from "./calendarApi"
 
-const schema = yup
-  .object({
-    start: yup.date().typeError("Invalid date").required(),
-    end: yup
-      .date()
-      .typeError("Invalid date")
-      .when("start", (start, schema) => {
-        if (start) {
-          const halfHourAfter = new Date(start.getTime() + 30 * 60000);
-          return schema.min(halfHourAfter);
-        }
+const schema = yup.object({
+  title: yup.string().required(),
+  max_members: yup
+    .number()
+    .required()
+    .positive()
+    .integer()
+    .max(1000)
+    .when("$members", (members, schema) => {
+      return schema.min(members);
+    })
+    .typeError("Must be a number"),
+  start: yup.date().typeError("Invalid date").required(),
+  end: yup
+    .date()
+    .typeError("Invalid date")
+    .when("start", (start, schema) => {
+      if (start) {
+        const halfHourAfter = new Date(start.getTime() + 30 * 60000);
+        return schema.min(halfHourAfter);
+      }
 
-        return schema;
-      })
-      .required(),
-    title: yup.string().required(),
-    max_members: yup
-      .number()
-      .required()
-      .positive()
-      .integer()
-      .max(1000)
-      .typeError("Must be a number"),
-  })
-  .required();
+      return schema;
+    })
+    .required(),
+});
 
-export default function AddEventForm({ event, handleAdd }) {
+export default function EditEvent({ event, handleEdit }) {
   const [trainers, setTrainers] = useState();
   const {
     register,
@@ -40,6 +41,7 @@ export default function AddEventForm({ event, handleAdd }) {
     formState: { errors, isDirty, isValid },
   } = useForm({
     resolver: yupResolver(schema),
+    context: { members: event?.extendedProps?.members.length },
     mode: "onChange",
   });
 
@@ -48,7 +50,8 @@ export default function AddEventForm({ event, handleAdd }) {
   }, []);
 
   const onSubmit = (data) => {
-    handleAdd(data);
+    data.id = event.id;
+    handleEdit(data);
   };
 
   return (
@@ -56,7 +59,7 @@ export default function AddEventForm({ event, handleAdd }) {
       <form onSubmit={handleSubmit(onSubmit)} className="mt-6">
         <label
           htmlFor="Title"
-          className="block text-sm text-gray-800"
+          className="block text-sm text-gray-800 "
         >
           Title*
         </label>
@@ -73,7 +76,7 @@ export default function AddEventForm({ event, handleAdd }) {
         )}
         <label
           htmlFor="StartDate"
-          className="block text-sm text-gray-800"
+          className="block text-sm text-gray-800 "
         >
           Start date and time
         </label>
@@ -102,7 +105,7 @@ export default function AddEventForm({ event, handleAdd }) {
 
         <label
           htmlFor="EndDate"
-          className="block text-sm text-gray-800"
+          className="block text-sm text-gray-800 "
         >
           End date and time
         </label>
@@ -128,10 +131,17 @@ export default function AddEventForm({ event, handleAdd }) {
             {errors.end.message}
           </p>
         )}
-        <label htmlFor="max_members" className="block text-sm text-gray-800 ">
+        <label
+          htmlFor="max_members"
+          className="block text-sm text-gray-800"
+        >
           Class slots*
         </label>
-        <input className="input-primary" {...register("max_members")}></input>
+        <input
+          defaultValue={event?.extendedProps?.max_members}
+          className="input-primary"
+          {...register("max_members")}
+        ></input>
         {errors.max_members && (
           <p className="text-red-700">
             {"⚠ "}
@@ -139,10 +149,14 @@ export default function AddEventForm({ event, handleAdd }) {
           </p>
         )}
 
-        <label htmlFor="max_members" className="block text-sm text-gray-800 ">
+        <label
+          htmlFor="max_members"
+          className="block text-sm text-gray-800"
+        >
           Description
         </label>
         <textarea
+          defaultValue={event?.extendedProps?.description}
           type="textarea"
           className="input-primary"
           {...register("description")}
@@ -155,21 +169,32 @@ export default function AddEventForm({ event, handleAdd }) {
         )}
         <label
           htmlFor="trainer"
-          className="block text-sm text-gray-800 "
+          className="block text-sm text-gray-800"
         >
           Trainer
         </label>
-        <select className="input-primary" {...register("trainer")}>
-          <option>{""}</option>
+        <select
+          className="input-primary"
+          {...register("trainer")}
+        >
           {trainers?.map((e) => (
-            <option>
-              {e?.user.first_name} {e?.user.last_name}
+            <option
+              key={e.id}
+              selected={
+                `${e?.user?.first_name} ${e?.user?.last_name}` ===
+                `${event.extendedProps.trainer}`
+              }
+            >
+              {`${e?.user?.first_name} ${e?.user?.last_name}`}
             </option>
           ))}
         </select>
         <p className="text-xs text-right font-bold py-4">* required</p>
-        <button disabled={!isDirty || !isValid} className="btn-primary">
-          ADD
+        <button
+          disabled={!isDirty || !isValid}
+          className="btn-primary"
+        >
+          EDIT
         </button>
       </form>
     </>

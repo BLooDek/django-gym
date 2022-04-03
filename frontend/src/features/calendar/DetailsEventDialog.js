@@ -58,7 +58,7 @@ export default function DetailsEventDialog({ eventInfo, setItems }) {
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95"
             >
-              <div className="dark:bg-gray-800 inline-block w-full max-w-md p-6 my-8 overflow-hidden text-left align-middle transition-all transform bg-white border-2 border-black shadow-xl rounded-2xl">
+              <div className="inline-block w-full max-w-md p-6 my-8 overflow-hidden text-left align-middle transition-all transform bg-white border-2 border-black shadow-xl rounded-2xl">
                 <Dialog.Title
                   as="h3"
                   className="text-lg font-medium leading-6 text-gray-900"
@@ -83,9 +83,9 @@ export default function DetailsEventDialog({ eventInfo, setItems }) {
                 Slots: {event?.extendedProps?.members.length} /{" "}
                 {event?.extendedProps?.max_members}
                 <div className="flex items-center justify-between mt-4">
-                  <span className="w-1/5 border-b dark:border-gray-600 lg:w-1/5"></span>
+                  <span className="w-1/5 border-b  lg:w-1/5"></span>
 
-                  <span className="w-1/5 border-b dark:border-gray-400 lg:w-1/5"></span>
+                  <span className="w-1/5 border-b lg:w-1/5"></span>
                 </div>
                 <div className="flex flex-row">
                   <button

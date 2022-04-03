@@ -1,13 +1,13 @@
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment } from "react";
-import AddEventForm from "./AddEventForm";
+import EditEventForm from "./EditEventForm";
 import { useSelector, useDispatch } from "react-redux";
-import {setAddDialog } from "./calendarState"
+import { setEditDialog } from "./calendarState";
 
-export default function AddEventDialog({ eventInfo, handleAdd }) {
+export default function EditEventDialog({ eventInfo, handleEdit }) {
   const dispatch = useDispatch();
   const event = JSON.parse(JSON.stringify(eventInfo));
-  const isOpen = useSelector((state) => state.calendarDialog.addDialog);
+  const isOpen = useSelector((state) => state.calendarDialog.editDialog);
 
   return (
     <>
@@ -15,7 +15,7 @@ export default function AddEventDialog({ eventInfo, handleAdd }) {
         <Dialog
           as="div"
           className=" fixed inset-0 z-10 overflow-y-auto"
-          onClose={() => dispatch(setAddDialog(false))}
+          onClose={() => dispatch(setEditDialog(false))}
         >
           <div className="min-h-screen px-4 text-center">
             <Transition.Child
@@ -46,18 +46,18 @@ export default function AddEventDialog({ eventInfo, handleAdd }) {
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95"
             >
-              <div className="inline-block w-full max-w-md p-6 my-8 overflow-hidden text-left align-middle transition-all transform bg-white border-2 border-black shadow-xl rounded-2xl">
+              <div className=" inline-block w-full max-w-md p-6 my-8 overflow-hidden text-left align-middle transition-all transform bg-white border-2 border-black shadow-xl rounded-2xl">
                 <Dialog.Title
                   as="h3"
                   className="text-lg font-medium leading-6 text-gray-900"
                 >
-                  Add event
+                  Edit event
                 </Dialog.Title>
-                <AddEventForm event={event} handleAdd={handleAdd} />
+                <EditEventForm event={event} handleEdit={handleEdit} />
                 <div className="flex items-center justify-between mt-4">
-                  <span className="w-1/5 border-b lg:w-1/5"></span>
+                  <span className="w-1/5 border-b  lg:w-1/5"></span>
 
-                  <span className="w-1/5 border-b lg:w-1/5"></span>
+                  <span className="w-1/5 border-b  lg:w-1/5"></span>
                 </div>
               </div>
             </Transition.Child>

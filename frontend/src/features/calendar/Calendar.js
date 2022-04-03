@@ -8,6 +8,7 @@ import { fetchData, editEvent, addEvent } from "./calendarApi";
 import { setAddDialog, setDetailsDialog } from "./calendarState";
 import DetailsEventDialog from "./DetailsEventDialog";
 import AddEventDialog from "./AddEventDialog";
+import EditEventDialog from "./EditEventDialog";
 import "../../App.css";
 
 export default function Calendar({ setCurrentPage }) {
@@ -32,6 +33,9 @@ export default function Calendar({ setCurrentPage }) {
   function handleGestures(eventDragInfo) {
     editEvent(eventDragInfo.event, setItems, setIsLoaded, setError, dispatch);
   }
+  function handleEdit(data) {
+    editEvent(data, setItems, setIsLoaded, setError, dispatch);
+  }
 
   function handleDateSelect(selectInfo) {
     setCurrentEvent(selectInfo);
@@ -52,10 +56,13 @@ export default function Calendar({ setCurrentPage }) {
   } else {
     return (
       <div className="mx-10 my-14">
-        {currentEvent && <DetailsEventDialog setItems={setItems} eventInfo={currentEvent} />}
+        {currentEvent && (
+          <DetailsEventDialog setItems={setItems} eventInfo={currentEvent} />
+        )}
         {currentEvent && (
           <AddEventDialog handleAdd={handleAdd} eventInfo={currentEvent} />
         )}
+        {currentEvent && <EditEventDialog eventInfo={currentEvent} handleEdit={handleEdit}/>}
         <FullCalendar
           events={items}
           plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
