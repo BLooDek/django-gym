@@ -3,7 +3,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import DateTimePicker from "react-datetime-picker";
 import { useEffect, useState } from "react";
-import { fetchTrainers, } from "./calendarApi";
+import {calendarDataFetch, url } from "./calendarApi";
 
 const schema = yup
   .object({
@@ -44,7 +44,7 @@ export default function AddEventForm({ event, handleAdd }) {
   });
 
   useEffect(() => {
-    fetchTrainers(setTrainers);
+    calendarDataFetch(url.trainers, "GET", setTrainers);
   }, []);
 
   const onSubmit = (data) => {

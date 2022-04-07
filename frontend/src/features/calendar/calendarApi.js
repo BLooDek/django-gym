@@ -1,5 +1,3 @@
-import { setEditDialog, setAddDialog, setDetailsDialog } from "./calendarState";
-
 const calendarUrl = "http://127.0.0.1:8000/calendar/";
 export const url = {
   getAll: calendarUrl + "all/",
@@ -11,8 +9,15 @@ export const url = {
   delete: calendarUrl + "delete/",
 };
 
-//TODO delete
-function fetcher(url, method, setData, setIsLoaded, setError, data) {
+//TODO - add error handling
+export function calendarDataFetch(
+  url,
+  method,
+  setData,
+  setIsLoaded,
+  setError,
+  data
+) {
   const headers = {
     "Content-Type": "application/json",
   };
@@ -46,36 +51,4 @@ function fetcher(url, method, setData, setIsLoaded, setError, data) {
   if (setIsLoaded) {
     setIsLoaded(true);
   }
-}
-
-export function fetchData(setItems, setIsLoaded, setError) {
-  fetcher(url.getAll, "GET", setItems, setIsLoaded, setError);
-}
-
-export function editEvent(event, setItems, setIsLoaded, setError, dispatch) {
-  fetcher(url.edit, "PATCH", setItems, setIsLoaded, setError, event);
-  dispatch(setEditDialog(false));
-}
-
-export function addEvent(event, setItems, setIsLoaded, setError, dispatch) {
-  fetcher(url.add, "POST", setItems, setIsLoaded, setError, event);
-  dispatch(setAddDialog(false));
-}
-
-export function fetchTrainers(setTrainers) {
-  fetcher(url.trainers, "GET", setTrainers);
-}
-
-export function signUpForClass(event, setItems, dispatch) {
-  fetcher(url.signUp, "POST", setItems, null, null, event);
-  dispatch(setDetailsDialog(false));
-}
-export function SignOutFromClass(event, setItems, dispatch) {
-  fetcher(url.signOut, "POST", setItems, null, null, event);
-  dispatch(setDetailsDialog(false));
-}
-
-export function deleteEvent(event, setItems, dispatch) {
-  fetcher(url.delete, "DELETE", setItems, null, null, event);
-  dispatch(setDetailsDialog(false));
 }

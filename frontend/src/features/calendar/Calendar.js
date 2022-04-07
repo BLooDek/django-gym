@@ -4,8 +4,8 @@ import FullCalendar from "@fullcalendar/react"; // must go before plugins
 import dayGridPlugin from "@fullcalendar/daygrid"; // a plugin!
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
-import { fetchData, editEvent, addEvent} from "./calendarApi";
-import { setAddDialog, setDetailsDialog } from "./calendarState";
+import { calendarDataFetch, url } from "./calendarApi";
+import { setAddDialog, setDetailsDialog, setEditDialog } from "./calendarState";
 import DetailsEventDialog from "./DetailsEventDialog";
 import AddEventDialog from "./AddEventDialog";
 import EditEventDialog from "./EditEventDialog";
@@ -23,7 +23,7 @@ export default function Calendar({ setCurrentPage }) {
   const [items, setItems] = useState();
 
   useEffect(() => {
-    fetchData(setItems, setIsLoaded, setError);
+    calendarDataFetch(url.getAll, "GET", setItems, setIsLoaded, setError);
   }, [isLoggedIn]);
 
   useEffect(() => {
@@ -31,10 +31,18 @@ export default function Calendar({ setCurrentPage }) {
   }, [setCurrentPage]);
 
   function handleGestures(eventDragInfo) {
-    editEvent(eventDragInfo.event, setItems, setIsLoaded, setError, dispatch);
+    calendarDataFetch(
+      url.edit,
+      "PATCH",
+      setItems,
+      setIsLoaded,
+      setError,
+      eventDragInfo.event
+    );
   }
   function handleEdit(data) {
-    editEvent(data, setItems, setIsLoaded, setError, dispatch);
+    calendarDataFetch(url.edit, "PATCH", setItems, setIsLoaded, setError, data);
+    dispatch(setEditDialog(false));
   }
 
   function handleDateSelect(selectInfo) {
@@ -42,7 +50,9 @@ export default function Calendar({ setCurrentPage }) {
     dispatch(setAddDialog(true));
   }
   function handleAdd(data) {
-    addEvent(data, setItems, setIsLoaded, setError, dispatch);
+    // addEvent(data, setItems, setIsLoaded, setError, dispatch);
+    calendarDataFetch(url.add, "POST", setItems, setIsLoaded, setError, data);
+    dispatch(setAddDialog(false));
   }
   function handleClick(eventClickInfo) {
     setCurrentEvent(eventClickInfo.event);
@@ -62,7 +72,9 @@ export default function Calendar({ setCurrentPage }) {
         {currentEvent && (
           <AddEventDialog handleAdd={handleAdd} eventInfo={currentEvent} />
         )}
-        {currentEvent && <EditEventDialog eventInfo={currentEvent} handleEdit={handleEdit}/>}
+        {currentEvent && (
+          <EditEventDialog eventInfo={currentEvent} handleEdit={handleEdit} />
+        )}
         <FullCalendar
           events={items}
           plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
