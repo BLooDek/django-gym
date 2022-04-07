@@ -1,6 +1,8 @@
 import { setEditDialog, setAddDialog, setDetailsDialog } from "./calendarState";
+import { useState, useEffect } from "react";
+
 const calendarUrl = "http://127.0.0.1:8000/calendar/";
-const url = {
+export const url = {
   getAll: calendarUrl + "all/",
   edit: calendarUrl + "update/",
   add: calendarUrl + "add/",
@@ -10,124 +12,109 @@ const url = {
   delete: calendarUrl + "delete/",
 };
 
-export function fetchData(setItems, setIsLoaded, setError) {
+//TODO delete
+function fetcher(url, method, setData, setIsLoaded, setError, data) {
   const headers = {
     "Content-Type": "application/json",
   };
   if (localStorage.getItem("token")) {
     headers.Authorization = `Token ${localStorage.getItem("token")}`;
   }
-  fetch(url.getAll, {
-    method: "GET",
+  fetch(url, {
+    method: method,
     headers: headers,
+    body: JSON.stringify(data),
   })
-    .then((res) => res.json())
-    .then(
-      (result) => {
-        setItems(result);
-      },
-      (error) => {
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Network response was not OK");
+      }
+      return response.json();
+    })
+    .then((myData) => {
+      setData(myData);
+    })
+    .catch((error) => {
+      if (setError) {
         setError(error);
       }
-    );
-  setIsLoaded(true);
+
+      console.error(
+        "There has been a problem with your fetch operation:",
+        error
+      );
+    });
+  if (setIsLoaded) {
+    setIsLoaded(true);
+  }
 }
+
+export function useFetch(url, method, data) {
+  const [error, setError] = useState(null);
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [items, setItems] = useState([]);
+  const headers = {
+    "Content-Type": "application/json",
+  };
+  if (localStorage.getItem("token")) {
+    headers.Authorization = `Token ${localStorage.getItem("token")}`;
+  }
+  useEffect(() => {
+    fetch(url, {
+      method: method,
+      headers: headers,
+      body: JSON.stringify(data),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not OK");
+        }
+        return response.json();
+      })
+      .then((myData) => {
+        setItems(myData);
+      })
+      .catch((error) => {
+        setError && setError(error);
+
+        console.error(
+          "There has been a problem with your fetch operation:",
+          error
+        );
+      });
+    setIsLoaded && setIsLoaded(true);
+  }, [data]);
+  return [items, isLoaded, error, data];
+}
+
+export function fetchData(setItems, setIsLoaded, setError) {
+  fetcher(url.getAll, "GET", setItems, setIsLoaded, setError);
+}
+
 export function editEvent(event, setItems, setIsLoaded, setError, dispatch) {
-  fetch(url.edit, {
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Token ${localStorage.getItem("token")}`,
-    },
-    method: "PATCH",
-    body: JSON.stringify(event),
-  })
-    .then((res) => res.json())
-    .then(
-      (result) => {
-        setItems(result);
-        setIsLoaded(true);
-        dispatch(setEditDialog(false));
-      },
-      (error) => {
-        setIsLoaded(true);
-        setError(error);
-      }
-    );
+  fetcher(url.edit, "PATCH", setItems, setIsLoaded, setError, event);
+  dispatch(setEditDialog(false));
 }
 
 export function addEvent(event, setItems, setIsLoaded, setError, dispatch) {
-  fetch(url.add, {
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Token ${localStorage.getItem("token")}`,
-    },
-    method: "POST",
-    body: JSON.stringify(event),
-  })
-    .then((res) => res.json())
-    .then(
-      (result) => {
-        setItems(result);
-        setIsLoaded(true);
-        dispatch(setAddDialog(false));
-      },
-      (error) => {
-        setIsLoaded(true);
-        setError(error);
-      }
-    );
+  fetcher(url.add, "POST", setItems, setIsLoaded, setError, event);
+  dispatch(setAddDialog(false));
 }
 
 export function fetchTrainers(setTrainers) {
-  fetch(url.trainers)
-    .then((data) => data.json())
-    .then((data) => setTrainers(data));
+  fetcher(url.trainers, "GET", setTrainers);
 }
 
 export function signUpForClass(event, setItems, dispatch) {
-  fetch(url.signUp, {
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Token ${localStorage.getItem("token")}`,
-    },
-    method: "POST",
-    body: JSON.stringify(event),
-  })
-    .then((response) => response.json())
-    .then((response) => {
-      setItems(response);
-    });
+  fetcher(url.signUp, "POST", setItems, null, null, event);
   dispatch(setDetailsDialog(false));
 }
 export function SignOutFromClass(event, setItems, dispatch) {
-  fetch(url.signOut, {
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Token ${localStorage.getItem("token")}`,
-    },
-    method: "POST",
-    body: JSON.stringify(event),
-  })
-    .then((response) => response.json())
-    .then((response) => {
-      setItems(response);
-    });
+  fetcher(url.signOut, "POST", setItems, null, null, event);
   dispatch(setDetailsDialog(false));
 }
 
 export function deleteEvent(event, setItems, dispatch) {
-  console.log(event);
-  fetch(url.delete, {
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Token ${localStorage.getItem("token")}`,
-    },
-    method: "DELETE",
-    body: JSON.stringify(event),
-  })
-    .then((res) => res.json())
-    .then((result) => {
-      setItems(result);
-      dispatch(setDetailsDialog(false));
-    });
+  fetcher(url.delete, "DELETE", setItems, null, null, event);
+  dispatch(setDetailsDialog(false));
 }
