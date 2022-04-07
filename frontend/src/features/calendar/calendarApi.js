@@ -1,5 +1,4 @@
 import { setEditDialog, setAddDialog, setDetailsDialog } from "./calendarState";
-import { useState, useEffect } from "react";
 
 const calendarUrl = "http://127.0.0.1:8000/calendar/";
 export const url = {
@@ -47,44 +46,6 @@ function fetcher(url, method, setData, setIsLoaded, setError, data) {
   if (setIsLoaded) {
     setIsLoaded(true);
   }
-}
-
-export function useFetch(url, method, data) {
-  const [error, setError] = useState(null);
-  const [isLoaded, setIsLoaded] = useState(false);
-  const [items, setItems] = useState([]);
-  const headers = {
-    "Content-Type": "application/json",
-  };
-  if (localStorage.getItem("token")) {
-    headers.Authorization = `Token ${localStorage.getItem("token")}`;
-  }
-  useEffect(() => {
-    fetch(url, {
-      method: method,
-      headers: headers,
-      body: JSON.stringify(data),
-    })
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Network response was not OK");
-        }
-        return response.json();
-      })
-      .then((myData) => {
-        setItems(myData);
-      })
-      .catch((error) => {
-        setError && setError(error);
-
-        console.error(
-          "There has been a problem with your fetch operation:",
-          error
-        );
-      });
-    setIsLoaded && setIsLoaded(true);
-  }, [data]);
-  return [items, isLoaded, error, data];
 }
 
 export function fetchData(setItems, setIsLoaded, setError) {
