@@ -39,16 +39,12 @@ export function calendarDataFetch(
       setData(myData);
     })
     .catch((error) => {
-      if (setError) {
-        setError(error);
-      }
+      setError && setError(error);
 
       console.error(
         "There has been a problem with your fetch operation:",
         error
       );
     });
-  if (setIsLoaded) {
-    setIsLoaded(true);
-  }
+  setIsLoaded && setIsLoaded(true);
 }
