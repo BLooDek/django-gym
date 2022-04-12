@@ -21,8 +21,8 @@ def blog_all(request):
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     elif request.method == 'DELETE':
         Post.objects.filter(id=request.data.get(
-            'id')).update(is_published=False)
-    posts = Post.objects.all().filter(is_published=True)
+            'id')).update(published=False)
+    posts = Post.objects.all().filter(published=True)
     if len(posts) > 0:
         paginator = PostDefaultResultsSetPagination()
         result_page = paginator.paginate_queryset(posts, request)

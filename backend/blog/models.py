@@ -11,10 +11,10 @@ class Comment(models.Model):
     body = models.TextField()
 
     class Meta:
-        orderding = ['created']
+        ordering = ['created']
 
 
-class Pos(models.Model):
+class Post(models.Model):
     title = models.CharField(max_length=200)
     headline = models.CharField(max_length=200, null=True, blank=True)
     body = models.TextField()
@@ -26,7 +26,7 @@ class Pos(models.Model):
     comments = models.ManyToManyField(Comment, blank=True)
 
     class Meta:
-        orderding = ['published']
+        ordering = ['published']
 
     def __str__(self):
         return self.title
