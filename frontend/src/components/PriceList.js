@@ -5,9 +5,9 @@ import { fetchData } from "./api";
 
 export default function PriceList({ setCurrentPage }) {
   const isLoggedIn = useSelector((state) => state.isLogged.value);
-  const isAdmin = useSelector(
-    (state) => state.isLogged.credentials?.["is_staff"]
-  );
+  // const isAdmin = useSelector(
+  //   (state) => state.isLogged.credentials?.["is_staff"]
+  // );
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [items, setItems] = useState(null);

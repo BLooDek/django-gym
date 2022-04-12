@@ -2,7 +2,10 @@ import { Dialog, Transition } from "@headlessui/react";
 import { Fragment } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { setDetailsDialog, setEditDialog } from "./calendarState";
-import { signUpForClass, SignOutFromClass, deleteEvent } from "./calendarApi";
+import {
+  calendarDataFetch,
+  url,
+} from "./calendarApi";
 
 export default function DetailsEventDialog({ eventInfo, setItems }) {
   const dispatch = useDispatch();
@@ -13,13 +16,16 @@ export default function DetailsEventDialog({ eventInfo, setItems }) {
     (state) => state.isLogged?.credentials?.["is_staff"]
   );
   function handleSignUp() {
-    signUpForClass(event, setItems, dispatch);
+    calendarDataFetch(url.signUp, "POST", setItems, null, null, event);
+    dispatch(setDetailsDialog(false));
   }
   function handleSignOut() {
-    SignOutFromClass(event, setItems, dispatch);
+    calendarDataFetch(url.signOut, "POST", setItems, null, null, event);
+    dispatch(setDetailsDialog(false));
   }
   function handleDelete() {
-    deleteEvent(event, setItems, dispatch);
+    calendarDataFetch(url.delete, "DELETE", setItems, null, null, event);
+    dispatch(setDetailsDialog(false));
   }
   return (
     <>
