@@ -11,13 +11,13 @@ class Comment(models.Model):
     body = models.TextField()
 
     class Meta:
-        ordering = ['created']
+        ordering = ['-created']
 
 
 class Post(models.Model):
     title = models.CharField(max_length=200)
     headline = models.CharField(max_length=200, null=True, blank=True)
-    body = models.TextField()
+    body = models.TextField(null=True, blank=True)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     published = models.BooleanField(default=True)
@@ -26,7 +26,7 @@ class Post(models.Model):
     comments = models.ManyToManyField(Comment, blank=True)
 
     class Meta:
-        ordering = ['published']
+        ordering = ['-created']
 
     def __str__(self):
         return self.title
