@@ -2,12 +2,54 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  ul { 
+    list-style-type: disc; 
+    list-style-position: inside; 
+ }
+ ol { 
+    list-style-type: decimal; 
+    list-style-position: inside; 
+ }
+ li {
+ 
+  list-style-position: inside; 
+  margin-left: 15px; 
+ }
+ ul ul, ol ul{ 
+    list-style-type: circle; 
+    list-style-position: inside; 
+    margin-left: 15px; 
+ }
+ ol ol, ul ol { 
+    list-style-type: lower-latin; 
+    list-style-position: inside; 
+    margin-left: 15px; 
+ }
+ h1 {
+  @apply text-2xl
+}
+h2 {
+  @apply text-xl
+}
+h3 {
+  @apply text-lg
+}
+}
+
+
 @layer components {
   .btn-primary {
     @apply w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-purple-main rounded-md hover:bg-purple-second focus:bg-purple-second disabled:bg-gray-600;
   }
   .input-primary {
     @apply block w-full px-4 py-2 mt-2 text-gray-700 bg-white border rounded-md focus:bg-gray-100  focus:ring-purple-second focus:outline-none focus:ring focus:ring-opacity-40;
+  }
+  .btn-blog {
+    @apply inline-flex items-center mx-1 px-2 py-2 rounded-r-md border   rounded-md text-base font-medium border-gray-300 bg-gray-700 text-white hover:text-gray-300 hover:bg-purple-main disabled:bg-gray-300 disabled:hover:text-gray-700
+  }
+  .link-blue a {
+    @apply underline text-blue-600 hover:text-blue-800 visited:text-purple-600
   }
 }
 

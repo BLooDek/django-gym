@@ -1,13 +1,18 @@
 import React, { useState, useEffect } from "react";
 import { Routes, Route, BrowserRouter as Router } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { Calendar, Blog, Contact, PriceList } from "./components/index";
+import {
+  Calendar,
+  Blog,
+  BlogPostDetails,
+  Contact,
+  PriceList,
+} from "./components/index";
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
 import LoginDialog from "./features/auth/LoginDialog";
 import RegisterDialog from "./features/auth/RegisterDialog";
 import { fetchCredentials } from "./features/auth/authApi";
-
 
 function App() {
   const [currentPage, setCurrentPage] = useState("Blog");
@@ -32,6 +37,10 @@ function App() {
             <Route
               path="/django-gym"
               element={<Blog setCurrentPage={setCurrentPage} />}
+            />
+            <Route
+              path="/django-gym/blog/:id"
+              element={<BlogPostDetails setCurrentPage={setCurrentPage} />}
             />
             <Route
               path="/django-gym/contact"

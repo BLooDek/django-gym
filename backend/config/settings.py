@@ -24,6 +24,7 @@ INSTALLED_APPS = [
     # local
     'users',
     'events',
+    'blog',
 
     # 3rd party
     'rest_framework',
