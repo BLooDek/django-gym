@@ -1,9 +1,3 @@
-const blogUrl = "http://127.0.0.1:8000";
-export const url = {
-  getAll: `${blogUrl}/blog/all/`,
-  add: `${blogUrl}/blog/add/`,
-};
-
 export function blogFetcher(url, method, setData, setIsLoaded, setError, data) {
   let headers = {
     "Content-Type": "application/json",
@@ -16,11 +10,9 @@ export function blogFetcher(url, method, setData, setIsLoaded, setError, data) {
     method: method,
     headers: headers,
   };
- 
   if (data) {
     options.body = JSON.stringify(data);
   }
- // console.log(options)
   fetch(url, 
     options,
   )

@@ -36,7 +36,7 @@ export default function AddBlogPostForm({ handleAdd }) {
         <label htmlFor="Title" className="block text-sm text-gray-800">
           Title*
         </label>
-        <input className="inpt-primary" {...register("title")}></input>
+        <input className="input-primary" {...register("title")}></input>
         {errors.title && (
           <p className="text-red-700">
             {"⚠ "}
@@ -49,7 +49,7 @@ export default function AddBlogPostForm({ handleAdd }) {
 
         <textarea
           type="textarea"
-          className="inpt-primary"
+          className="input-primary"
           {...register("headline")}
         ></textarea>
         {errors.headline && (
@@ -70,7 +70,7 @@ export default function AddBlogPostForm({ handleAdd }) {
               type="textarea"
               theme="snow"
               placeholder="enter some text..."
-              className="inpt-primary border-0 my-3 rounded-md"
+              className="border-0 my-3 rounded-md"
               onChange={onChange}
               value={value}
             />

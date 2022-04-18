@@ -58,3 +58,4 @@ backend/blog/migrations/__pycache__/__init__.cpython-310.pyc
 backend/blog/migrations/__pycache__/0001_initial.cpython-310.pyc
 backend/blog/migrations/__pycache__/0003_auto_20220413_1818.cpython-310.pyc
 backend/blog/migrations/__pycache__/0002_alter_post_body.cpython-310.pyc
+backend/events/migrations/__pycache__/0002_trainer.cpython-310.pyc

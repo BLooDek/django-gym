@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { blogFetcher, url } from "./blogApi";
+import { blogFetcher } from "./blogApi";
 import BlogPostMini from "./BlogPostMini";
 import {
   ChevronLeftIcon,
@@ -41,9 +41,9 @@ export default function Blog({ setCurrentPage }) {
     dispatch(setBlogUrl(items.previous));
   }
   function handleGoToStart() {
-    dispatch(setBlogUrl(url.getAll));
+    dispatch(setBlogUrl("http://127.0.0.1:8000/blog/all/"));
   }
-  
+
   function handleAdd(data) {
     blogFetcher(localUrl, "POST", setItems, setIsLoaded, setError, data);
     dispatch(setAddDialog(false));
