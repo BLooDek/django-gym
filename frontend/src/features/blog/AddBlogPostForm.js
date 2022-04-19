@@ -60,7 +60,7 @@ export default function AddBlogPostForm({ handleAdd }) {
         )}
 
         <label htmlFor="Body" className="block text-sm text-gray-800 ">
-          Body*
+          Body
         </label>
         <Controller
           control={control}

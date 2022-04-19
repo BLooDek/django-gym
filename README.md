@@ -30,6 +30,16 @@ In ./backend/config folder create .env file with:
 `EMAIL_PORT =  `  
 `SECRET_KEY = "" `  
 
-pipenv install -r requirements.txt  
-pipenv shell  
-python manage.py runserver  
+./backend/
+python -m venv venv
+cd venv\Scripts
+activate
+
+Again in ./backend/
+pip install -r requirements.txt
+python .\manage.py migrate
+python .\manage.py runserver
+
+To run frontend:
+npm i
+npm start

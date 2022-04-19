@@ -78,7 +78,7 @@ export default function EditBlogPostForm({ handleEdit, postId }) {
             )}
 
             <label htmlFor="Body" className="block text-sm text-gray-800 ">
-              Body*
+              Body
             </label>
             <Controller
               control={control}
